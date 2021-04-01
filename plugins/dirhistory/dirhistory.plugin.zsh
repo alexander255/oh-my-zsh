@@ -20,16 +20,16 @@ export DIRHISTORY_SIZE=30
 # otherwise returns empty string.
 function pop_past() {
   setopt localoptions no_ksh_arrays
-  eval "$1='$dirhistory_past[$#dirhistory_past]'"
   if [[ $#dirhistory_past -gt 0 ]]; then
+    typeset -g "$1=${dirhistory_past[$#dirhistory_past]}"
     dirhistory_past[$#dirhistory_past]=()
   fi
 }
 
 function pop_future() {
   setopt localoptions no_ksh_arrays
-  eval "$1='$dirhistory_future[$#dirhistory_future]'"
   if [[ $#dirhistory_future -gt 0 ]]; then
+    typeset -g "$1=${dirhistory_future[$#dirhistory_future]}"
     dirhistory_future[$#dirhistory_future]=()
   fi
 }
